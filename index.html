@@ -109,89 +109,134 @@
             </div>
             <div>
                 <h1 class="text-sm font-bold text-slate-800 leading-tight">五福旅遊 國旅 DM 編輯系統</h1>
-                <p class="text-[11px] text-slate-500">點擊文字直接編輯・點擊相片上傳換圖・支援色彩標籤與 A4 完美列印</p>
+                <p class="text-[11px] text-slate-500">本島最多 10 個・離島最多 2 個・支援直覺新增、更換圖文與 A4 列印</p>
             </div>
         </div>
 
         <div class="flex items-center gap-2">
-            <button id="add-card-btn" onclick="addNewCard()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white rounded-lg text-xs font-semibold shadow-sm transition flex items-center gap-1.5 active:scale-95" title="在頁面中新增一張行程卡片 (上限10個)">
-                <i class="fa-solid fa-plus"></i> <span id="add-btn-text">新增行程卡片 (1/10)</span>
+            <button id="add-mainland-btn" onclick="addNewCard('mainland')" class="px-2.5 py-1.5 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white rounded-lg text-xs font-semibold shadow-xs transition flex items-center gap-1 active:scale-95" title="新增本島行程 (上限10個)">
+                <i class="fa-solid fa-plus text-[10px]"></i> <span id="add-mainland-btn-text">＋ 本島 (1/10)</span>
             </button>
-            <button onclick="resetDefaultData()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition flex items-center gap-1.5" title="重設回預設1張行程">
-                <i class="fa-solid fa-rotate-left"></i> 重設預設 (1張)
+            <button id="add-islands-btn" onclick="addNewCard('islands')" class="px-2.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white rounded-lg text-xs font-semibold shadow-xs transition flex items-center gap-1 active:scale-95" title="新增離島行程 (上限2個)">
+                <i class="fa-solid fa-plus text-[10px]"></i> <span id="add-islands-btn-text">＋ 離島 (0/2)</span>
             </button>
-            <button onclick="triggerPrint()" class="px-4 py-1.5 bg-[#1090d0] hover:bg-[#0c78af] text-white rounded-lg text-xs font-bold shadow-md transition flex items-center gap-1.5 active:scale-95">
+            <button onclick="resetDefaultData()" class="px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition flex items-center gap-1" title="重設回預設資料">
+                <i class="fa-solid fa-rotate-left text-[10px]"></i> 重設
+            </button>
+            <button onclick="triggerPrint()" class="px-3.5 py-1.5 bg-[#1090d0] hover:bg-[#0c78af] text-white rounded-lg text-xs font-bold shadow-md transition flex items-center gap-1.5 active:scale-95">
                 <i class="fa-solid fa-print"></i> 列印 / 存為 A4 PDF
             </button>
         </div>
     </header>
 
-    <main id="pdf-content" class="a4-page shadow-2xl p-[18px] text-slate-800 select-text">
+    <main id="pdf-content" class="a4-page shadow-2xl p-[14px] text-slate-800 select-text">
 
         <!-- Top Header Banner Section -->
         <header class="w-full pb-1 border-b-2 border-slate-800 flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
+            <div class="flex items-center gap-2">
                 <!-- Requested Brand Badge: Background #1090d0 with crisp white text -->
-                <div class="bg-[#1090d0] text-white px-2.5 py-1 rounded-md flex items-center gap-1.5 shadow-sm">
-                    <span class="font-extrabold tracking-wide text-[15px] text-white leading-none">五福旅遊</span>
-                    <span class="text-[9px] font-semibold text-white/90 uppercase tracking-tighter border-l border-white/40 pl-1.5 leading-none">Life Tour</span>
+                <div class="bg-[#1090d0] text-white px-2 py-0.5 rounded-md flex items-center gap-1 shadow-sm">
+                    <span class="font-extrabold tracking-wide text-[14px] text-white leading-none">五福旅遊</span>
+                    <span class="text-[8.5px] font-semibold text-white/90 uppercase tracking-tighter border-l border-white/40 pl-1 leading-none">Life Tour</span>
                 </div>
 
                 <!-- Licences -->
-                <div class="text-[8px] text-slate-600 font-medium tracking-tight">
+                <div class="text-[7.5px] text-slate-600 font-medium tracking-tight">
                     <span>交觀綜2023號</span>
                     <span class="mx-0.5">•</span>
                     <span>品保高字0059號</span>
                 </div>
 
                 <!-- Main Slogan -->
-                <div class="ml-2 flex items-center gap-1.5">
-                    <h2 class="text-[14px] font-black text-slate-900 tracking-tight leading-none" contenteditable="true" data-placeholder="輸入主題標題">國旅精選 10 大熱門行程</h2>
-                    <span class="bg-rose-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded tracking-wider" contenteditable="true" data-placeholder="標籤">圖文推廣手冊</span>
+                <div class="ml-1.5 flex items-center gap-1.5">
+                    <h2 class="text-[13px] font-black text-slate-900 tracking-tight leading-none" contenteditable="true" data-placeholder="輸入主題標題">國旅精選 12 大熱門行程</h2>
+                    <span class="bg-rose-500 text-white text-[8px] font-bold px-1 py-0.5 rounded tracking-wider" contenteditable="true" data-placeholder="標籤">圖文推廣手冊</span>
                 </div>
             </div>
 
             <!-- Right Promotional Pill -->
             <div class="flex items-center gap-1.5">
-                <div class="bg-slate-900 text-amber-300 text-[9px] font-extrabold px-2 py-0.5 rounded flex items-center gap-1 shadow-xs">
-                    <i class="fa-solid fa-crown text-[8px]"></i>
+                <div class="bg-slate-900 text-amber-300 text-[8px] font-extrabold px-1.5 py-0.5 rounded flex items-center gap-1 shadow-xs">
+                    <i class="fa-solid fa-crown text-[7px]"></i>
                     <span contenteditable="true" data-placeholder="促銷標題">2026 年度主推</span>
                 </div>
-                <div class="text-[8px] text-slate-500 font-semibold" contenteditable="true" data-placeholder="附加文字">
-                    保證有房・精緻包團・散客湊團
+                <div class="text-[7.5px] text-slate-500 font-semibold" contenteditable="true" data-placeholder="附加文字">
+                    本島精選・菊島金馬離島慢活
                 </div>
             </div>
         </header>
 
         <!-- Sub-header Slogan Strip -->
-        <div class="w-full py-0.5 text-[8.5px] text-slate-600 font-medium flex justify-between items-center border-b border-slate-200">
+        <div class="w-full py-0.5 text-[8px] text-slate-600 font-medium flex justify-between items-center border-b border-slate-200">
             <span contenteditable="true" class="truncate" data-placeholder="宣傳標語">
-                精選超值輕旅・特務危機實境・日式高訂私旅・百岳入門・高山賞楓限定席次
+                精選超值輕旅・特務危機實境・日式高訂私旅・百岳入門・菊島澎湖金馬度假限定
             </span>
-            <span class="text-slate-400 text-[8px] shrink-0">五福嚴選品質保證</span>
+            <span class="text-slate-400 text-[7.5px] shrink-0">五福嚴選品質保證</span>
         </div>
 
-        <!-- Cards Container: Aligned naturally to start with fixed spacing so 1-10 cards look balanced -->
-        <div id="cards-container" class="grid grid-cols-2 gap-x-3 gap-y-2 flex-1 content-start py-2 overflow-hidden">
-            <!-- Dynamic Cards will be rendered here by JavaScript -->
+        <!-- Main Scrolling Content Area inside A4 page -->
+        <div class="flex-1 flex flex-col justify-start gap-1 py-1 overflow-hidden">
+            
+            <!-- SECTION 1: 台灣本島 (Max 10) -->
+            <div class="flex flex-col">
+                <div class="flex items-center justify-between bg-gradient-to-r from-sky-50 to-white px-2 py-0.5 rounded border-l-3 border-[#1090d0] mb-1">
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-[9.5px] font-black text-[#1090d0] tracking-tight flex items-center gap-1">
+                            <i class="fa-solid fa-mountain-sun text-[8px]"></i> 台灣本島行程
+                        </span>
+                        <span id="mainland-counter" class="text-[7.5px] font-bold px-1.5 py-0.2 rounded-full bg-sky-100 text-sky-700">1 / 10</span>
+                    </div>
+                    <div class="text-[7.5px] text-slate-400 font-medium no-print">
+                        <button onclick="addNewCard('mainland')" id="quick-add-mainland" class="text-[#1090d0] hover:underline font-bold flex items-center gap-0.5">
+                            <i class="fa-solid fa-plus text-[6.5px]"></i> 新增本島卡片
+                        </button>
+                    </div>
+                </div>
+
+                <div id="mainland-cards-container" class="grid grid-cols-2 gap-x-2.5 gap-y-1.5 content-start">
+                    <!-- Mainland dynamic cards -->
+                </div>
+            </div>
+
+            <!-- SECTION 2: 台灣離島 (Max 2) -->
+            <div class="flex flex-col mt-0.5">
+                <div class="flex items-center justify-between bg-gradient-to-r from-emerald-50 to-white px-2 py-0.5 rounded border-l-3 border-emerald-600 mb-1">
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-[9.5px] font-black text-emerald-700 tracking-tight flex items-center gap-1">
+                            <i class="fa-solid fa-umbrella-beach text-[8px]"></i> 台灣離島行程
+                        </span>
+                        <span id="islands-counter" class="text-[7.5px] font-bold px-1.5 py-0.2 rounded-full bg-emerald-100 text-emerald-700">0 / 2</span>
+                    </div>
+                    <div class="text-[7.5px] text-slate-400 font-medium no-print">
+                        <button onclick="addNewCard('islands')" id="quick-add-islands" class="text-emerald-600 hover:underline font-bold flex items-center gap-0.5">
+                            <i class="fa-solid fa-plus text-[6.5px]"></i> 新增離島卡片
+                        </button>
+                    </div>
+                </div>
+
+                <div id="islands-cards-container" class="grid grid-cols-2 gap-x-2.5 gap-y-1.5 content-start">
+                    <!-- Islands dynamic cards -->
+                </div>
+            </div>
+
         </div>
 
         <footer class="w-full pt-1 border-t border-slate-300/90 text-slate-600">
-            <div class="flex items-center justify-between text-[8px] leading-tight pb-0.5">
-                <div class="flex items-center gap-1.5 flex-1 pr-2">
-                    <span class="bg-rose-100 text-rose-700 font-bold px-1 py-0.5 rounded text-[7.5px] shrink-0">五福國旅特色</span>
+            <div class="flex items-center justify-between text-[7.5px] leading-tight pb-0.5">
+                <div class="flex items-center gap-1 flex-1 pr-2">
+                    <span class="bg-rose-100 text-rose-700 font-bold px-1 py-0.2 rounded text-[7px] shrink-0">五福國旅特色</span>
                     <span class="truncate" contenteditable="true">
-                        超值散客一日遊：$599~$799輕鬆成行 ｜ 特色包團：6~7人獨立成行專車出發 ｜ 季節限定：指定日保證有房出團
+                        超值散客一日遊：$599~$799輕鬆成行 ｜ 特色包團：6~7人獨立成行專車出發 ｜ 離島度假：機酒全包・在地私房導覽
                     </span>
                 </div>
-                <div class="text-[7.5px] text-slate-500 text-right shrink-0" contenteditable="true">
+                <div class="text-[7px] text-slate-500 text-right shrink-0" contenteditable="true">
                     各產品售價與出發日期以官網最新公告為準，名額有限售完為止。
                 </div>
             </div>
 
             <!-- Absolute Bottom Right Version Line -->
-            <div class="w-full flex justify-end items-center pt-0.5 text-[8px] text-slate-500 font-medium">
-                <span class="text-slate-400 mr-1"><i class="fa-solid fa-code-commit text-[7px]"></i> 版本：</span>
+            <div class="w-full flex justify-end items-center pt-0.5 text-[7.5px] text-slate-500 font-medium">
+                <span class="text-slate-400 mr-1"><i class="fa-solid fa-code-commit text-[6.5px]"></i> 版本：</span>
                 <span contenteditable="true" class="font-semibold text-slate-700 hover:text-sky-600 border-b border-dashed border-slate-300 px-0.5" data-placeholder="請填入版本日期" title="點擊編輯版本資訊">
                     2026.10.15
                 </span>
@@ -303,74 +348,81 @@
     </div>
 
     <script>
-        // Default 1 Initial Template Item
-        const defaultSingleItinerary = [
-            {
-                id: "card-1",
-                mainTitle: "港灣寫意",
-                subTitle: "獅頭山、金山與正濱漁港網美散策一日",
-                price: "$599",
-                priceUnit: "/人",
-                departureDate: "8 ~ 12 月出發",
-                borderColor: "#bae6fd",
-                tags: [
-                    { text: "散客湊團", bg: "#2563eb", textCol: "#ffffff" },
-                    { text: "超值輕旅", bg: "#0284c7", textCol: "#ffffff" }
-                ],
-                bullets: [
-                    { prefix: "行程亮點 1", text: "" },
-                    { prefix: "行程亮點 2", text: "" },
-                    { prefix: "行程亮點 3", text: "" }
-                ],
-                recommendation: "海風輕拂、依山傍海，週末超值療癒散策首選",
-                categoryBadge: "超值輕旅",
-                imgSrc: "https://images.unsplash.com/photo-1543162255-a0c69d8d6728?auto=format&fit=crop&w=600&q=80"
-            }
-        ];
+        // Data Configuration for Two Distinct Sections
+        const MAX_MAINLAND_CARDS = 10;
+        const MAX_ISLANDS_CARDS = 2;
 
-        // Active State array (Max 10 cards allowed)
-        const MAX_CARDS = 10;
-        let itineraries = JSON.parse(JSON.stringify(defaultSingleItinerary));
+        const defaultMainlandCard = {
+            id: "mainland-1",
+            category: "mainland",
+            mainTitle: "港灣寫意",
+            subTitle: "獅頭山、金山與正濱漁港網美散策一日",
+            price: "$599",
+            priceUnit: "/人",
+            departureDate: "8 ~ 12 月出發",
+            borderColor: "#bae6fd",
+            tags: [
+                { text: "散客湊團", bg: "#2563eb", textCol: "#ffffff" },
+                { text: "超值輕旅", bg: "#0284c7", textCol: "#ffffff" }
+            ],
+            bullets: [
+                { prefix: "行程亮點 1", text: "" },
+                { prefix: "行程亮點 2", text: "" },
+                { prefix: "行程亮點 3", text: "" }
+            ],
+            recommendation: "海風輕拂、依山傍海，週末超值療癒散策首選",
+            categoryBadge: "超值輕旅",
+            imgSrc: "https://images.unsplash.com/photo-1543162255-a0c69d8d6728?auto=format&fit=crop&w=600&q=80"
+        };
+
+        // State Containers
+        let mainlandCards = [JSON.parse(JSON.stringify(defaultMainlandCard))];
+        let islandsCards = []; // Starts at 0, max 2
+
+        let activeSection = 'mainland';
         let activeCardIndex = 0;
         let activeTagIndex = 0;
 
-        function updateAddButtonState() {
-            const addBtn = document.getElementById('add-card-btn');
-            const addBtnText = document.getElementById('add-btn-text');
-            if (!addBtn || !addBtnText) return;
+        function updateSectionCounters() {
+            // Mainland
+            const mlBtn = document.getElementById('add-mainland-btn');
+            const mlBtnText = document.getElementById('add-mainland-btn-text');
+            const mlCounter = document.getElementById('mainland-counter');
+            const mlQuickAdd = document.getElementById('quick-add-mainland');
+            
+            if (mlBtnText) mlBtnText.innerText = `＋ 本島 (${mainlandCards.length}/${MAX_MAINLAND_CARDS})`;
+            if (mlCounter) mlCounter.innerText = `${mainlandCards.length} / ${MAX_MAINLAND_CARDS}`;
+            const isMlFull = mainlandCards.length >= MAX_MAINLAND_CARDS;
+            if (mlBtn) mlBtn.disabled = isMlFull;
+            if (mlQuickAdd) mlQuickAdd.style.display = isMlFull ? 'none' : 'inline-flex';
 
-            addBtnText.innerText = `新增行程卡片 (${itineraries.length}/${MAX_CARDS})`;
-            if (itineraries.length >= MAX_CARDS) {
-                addBtn.disabled = true;
-                addBtn.title = "已達 A4 單頁上限 10 個行程";
-            } else {
-                addBtn.disabled = false;
-                addBtn.title = `在頁面中新增一張行程卡片 (目前 ${itineraries.length}/${MAX_CARDS})`;
-            }
+            // Islands
+            const islBtn = document.getElementById('add-islands-btn');
+            const islBtnText = document.getElementById('add-islands-btn-text');
+            const islCounter = document.getElementById('islands-counter');
+            const islQuickAdd = document.getElementById('quick-add-islands');
+
+            if (islBtnText) islBtnText.innerText = `＋ 離島 (${islandsCards.length}/${MAX_ISLANDS_CARDS})`;
+            if (islCounter) islCounter.innerText = `${islandsCards.length} / ${MAX_ISLANDS_CARDS}`;
+            const isIslFull = islandsCards.length >= MAX_ISLANDS_CARDS;
+            if (islBtn) islBtn.disabled = isIslFull;
+            if (islQuickAdd) islQuickAdd.style.display = isIslFull ? 'none' : 'inline-flex';
         }
 
-        function renderCards() {
-            const container = document.getElementById('cards-container');
-            container.innerHTML = '';
-            updateAddButtonState();
-
-            itineraries.forEach((item, index) => {
-                const cardEl = document.createElement('div');
-                cardEl.className = "relative bg-white rounded-xl border border-slate-200/90 shadow-2xs hover:shadow-xs transition p-2 flex gap-2 h-[178px] overflow-hidden group";
-                cardEl.style.borderColor = item.borderColor || '#e2e8f0';
-
-                cardEl.innerHTML = `
+        function createCardHTML(item, index, section) {
+            return `
+                <div class="relative bg-white rounded-lg border border-slate-200/90 shadow-2xs hover:shadow-xs transition p-1.5 flex gap-1.5 h-[154px] overflow-hidden group" style="border-color: ${item.borderColor || '#e2e8f0'};">
                     <!-- Left: Rectangular Poster Image -->
-                    <div class="relative w-[114px] shrink-0 h-full rounded-lg overflow-hidden border border-slate-200/80 bg-slate-100 cursor-pointer group/img" onclick="openImageModal(${index})" title="點擊更換圖片 (可上傳電腦檔案或輸入網址)">
+                    <div class="relative w-[96px] shrink-0 h-full rounded-md overflow-hidden border border-slate-200/80 bg-slate-100 cursor-pointer group/img" onclick="openImageModal('${section}', ${index})" title="點擊更換圖片">
                         <img src="${item.imgSrc}" alt="${item.mainTitle}" class="w-full h-full object-cover transition duration-300 group-hover/img:scale-105" onerror="this.src='https://placehold.co/300x400/e2e8f0/64748b?text=點擊換圖'">
                         
-                        <div class="no-print absolute inset-0 bg-slate-900/40 opacity-0 group-hover/img:opacity-100 transition flex flex-col items-center justify-center text-white text-[9px] font-bold gap-1">
-                            <i class="fa-solid fa-camera text-sm"></i>
-                            <span>更換圖片</span>
+                        <div class="no-print absolute inset-0 bg-slate-900/40 opacity-0 group-hover/img:opacity-100 transition flex flex-col items-center justify-center text-white text-[8px] font-bold gap-0.5">
+                            <i class="fa-solid fa-camera text-xs"></i>
+                            <span>換圖</span>
                         </div>
 
-                        <div class="absolute bottom-1 right-1 bg-black/60 backdrop-blur-xs text-white text-[7px] px-1 py-0.2 rounded font-mono">
-                            ${index + 1}
+                        <div class="absolute bottom-0.5 right-0.5 bg-black/60 backdrop-blur-xs text-white text-[6.5px] px-1 py-0.2 rounded font-mono">
+                            ${section === 'mainland' ? `本島 ${index + 1}` : `離島 ${index + 1}`}
                         </div>
                     </div>
 
@@ -379,49 +431,49 @@
                         <div>
                             <!-- Row 1: Main Title + Price directly adjacent -->
                             <div class="flex items-baseline justify-between gap-1 leading-tight">
-                                <h3 class="font-extrabold text-[12.5px] text-slate-900 tracking-tight truncate flex-1" contenteditable="true" data-placeholder="大主題名稱" onblur="updateCardData(${index}, 'mainTitle', this.innerText)">
+                                <h3 class="font-extrabold text-[11.5px] text-slate-900 tracking-tight truncate flex-1" contenteditable="true" data-placeholder="大主題名稱" onblur="updateCardData('${section}', ${index}, 'mainTitle', this.innerText)">
                                     ${item.mainTitle}
                                 </h3>
                                 <div class="shrink-0 flex items-baseline text-rose-600 font-extrabold">
-                                    <span class="text-[12px] tracking-tight" contenteditable="true" data-placeholder="$000" onblur="updateCardData(${index}, 'price', this.innerText)">${item.price}</span>
-                                    <span class="text-[8px] text-rose-500 font-semibold ml-0.5" contenteditable="true" data-placeholder="單位" onblur="updateCardData(${index}, 'priceUnit', this.innerText)">${item.priceUnit}</span>
+                                    <span class="text-[11px] tracking-tight" contenteditable="true" data-placeholder="$000" onblur="updateCardData('${section}', ${index}, 'price', this.innerText)">${item.price}</span>
+                                    <span class="text-[7.5px] text-rose-500 font-semibold ml-0.5" contenteditable="true" data-placeholder="單位" onblur="updateCardData('${section}', ${index}, 'priceUnit', this.innerText)">${item.priceUnit}</span>
                                 </div>
                             </div>
 
                             <!-- Row 2: Subtitle -->
-                            <div class="text-[9px] text-slate-500 font-medium leading-tight truncate mt-0.5" contenteditable="true" data-placeholder="小標題說明" onblur="updateCardData(${index}, 'subTitle', this.innerText)">
+                            <div class="text-[8px] text-slate-500 font-medium leading-tight truncate mt-0.2" contenteditable="true" data-placeholder="小標題說明" onblur="updateCardData('${section}', ${index}, 'subTitle', this.innerText)">
                                 ${item.subTitle}
                             </div>
 
                             <!-- Row 3: Departure Date Pill Row -->
-                            <div class="flex items-center gap-1 my-1 text-[8px]">
-                                <span class="bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-semibold flex items-center gap-1 border border-slate-200/60" contenteditable="true" data-placeholder="出發日期" onblur="updateCardData(${index}, 'departureDate', this.innerText)">
-                                    <i class="fa-regular fa-calendar-check text-[#1090d0]"></i> ${item.departureDate}
+                            <div class="flex items-center gap-1 my-0.5 text-[7.5px]">
+                                <span class="bg-slate-100 text-slate-700 px-1 py-0.2 rounded font-semibold flex items-center gap-1 border border-slate-200/60" contenteditable="true" data-placeholder="出發日期" onblur="updateCardData('${section}', ${index}, 'departureDate', this.innerText)">
+                                    <i class="fa-regular fa-calendar-check text-[#1090d0] text-[7px]"></i> ${item.departureDate}
                                 </span>
                             </div>
 
                             <!-- Row 4: Dedicated Tags Row (Up to 4 tags standalone) -->
-                            <div class="flex items-center gap-1 mb-1 text-[8px] min-h-[19px] overflow-hidden">
+                            <div class="flex items-center gap-1 mb-0.5 text-[7.5px] min-h-[17px] overflow-hidden">
                                 ${item.tags.slice(0, 4).map((tag, tIdx) => `
-                                    <span class="px-1.5 py-0.5 rounded-full font-bold cursor-pointer transition shadow-2xs text-[7.5px] tracking-tight hover:brightness-110 flex items-center gap-1" style="background-color: ${tag.bg}; color: ${tag.textCol};" onclick="openTagModal(this, ${index}, ${tIdx})" title="點擊設定標籤顏色">
-                                        <span contenteditable="true" onclick="event.stopPropagation()" onblur="updateTagText(${index}, ${tIdx}, this.innerText)" data-placeholder="標籤">${tag.text}</span>
+                                    <span class="px-1.5 py-0.2 rounded-full font-bold cursor-pointer transition shadow-2xs text-[7px] tracking-tight hover:brightness-110 flex items-center gap-0.5" style="background-color: ${tag.bg}; color: ${tag.textCol};" onclick="openTagModal('${section}', ${index}, ${tIdx})" title="點擊設定標籤顏色">
+                                        <span contenteditable="true" onclick="event.stopPropagation()" onblur="updateTagText('${section}', ${index}, ${tIdx}, this.innerText)" data-placeholder="標籤">${tag.text}</span>
                                     </span>
                                 `).join('')}
                                 ${item.tags.length < 4 ? `
-                                    <button onclick="addTagToCard(${index})" class="no-print text-slate-400 hover:text-[#1090d0] px-1 py-0.5 text-[8px] rounded border border-dashed border-slate-300 hover:border-[#1090d0] transition flex items-center gap-0.5" title="新增自訂標籤 (上限4個)">
-                                        <i class="fa-solid fa-plus text-[7px]"></i> 標籤 (${item.tags.length}/4)
+                                    <button onclick="addTagToCard('${section}', ${index})" class="no-print text-slate-400 hover:text-[#1090d0] px-1 py-0.2 text-[7px] rounded border border-dashed border-slate-300 hover:border-[#1090d0] transition flex items-center gap-0.5" title="新增自訂標籤 (上限4個)">
+                                        <i class="fa-solid fa-plus text-[6px]"></i> 標籤 (${item.tags.length}/4)
                                     </button>
                                 ` : ''}
                             </div>
 
-                            <!-- Row 5: Highlight Bullet Points (Blank & Editable) -->
-                            <ul class="space-y-0.5 text-[8.5px] text-slate-700 font-medium leading-tight">
+                            <!-- Row 5: Highlight Bullet Points -->
+                            <ul class="space-y-0.2 text-[7.5px] text-slate-700 font-medium leading-tight">
                                 ${item.bullets.map((b, bIdx) => `
-                                    <li class="flex items-start gap-1">
-                                        <i class="fa-solid fa-star text-amber-500 mt-[2px] text-[6.5px] shrink-0"></i>
+                                    <li class="flex items-start gap-0.5">
+                                        <i class="fa-solid fa-star text-amber-500 mt-[1.5px] text-[5.5px] shrink-0"></i>
                                         <span class="truncate flex-1">
-                                            <strong class="text-slate-900 font-bold" contenteditable="true" data-placeholder="重點名稱" onblur="updateBulletPrefix(${index}, bIdx, this.innerText)">${b.prefix ? b.prefix + ':' : '行程亮點:'}</strong>
-                                            <span contenteditable="true" data-placeholder="點擊輸入行程內容..." class="text-slate-600 font-normal" onblur="updateBulletText(${index}, ${bIdx}, this.innerText)">${b.text}</span>
+                                            <strong class="text-slate-900 font-bold" contenteditable="true" data-placeholder="重點名稱" onblur="updateBulletPrefix('${section}', ${index}, ${bIdx}, this.innerText)">${b.prefix ? b.prefix + ':' : '重點:'}</strong>
+                                            <span contenteditable="true" data-placeholder="點擊輸入行程內容..." class="text-slate-600 font-normal" onblur="updateBulletText('${section}', ${index}, ${bIdx}, this.innerText)">${b.text}</span>
                                         </span>
                                     </li>
                                 `).join('')}
@@ -429,122 +481,191 @@
                         </div>
 
                         <!-- Card Bottom Strip: Recommendation & Category Badge -->
-                        <div class="mt-1 pt-1 border-t border-slate-100 flex items-center justify-between text-[7.5px] text-slate-500">
-                            <div class="truncate flex items-center gap-1 flex-1 pr-1">
-                                <i class="fa-solid fa-quote-left text-slate-300 text-[6.5px]"></i>
-                                <span class="truncate" contenteditable="true" data-placeholder="輸入一句推薦語..." onblur="updateCardData(${index}, 'recommendation', this.innerText)">${item.recommendation}</span>
+                        <div class="mt-0.5 pt-0.5 border-t border-slate-100 flex items-center justify-between text-[7px] text-slate-500">
+                            <div class="truncate flex items-center gap-0.5 flex-1 pr-1">
+                                <i class="fa-solid fa-quote-left text-slate-300 text-[5.5px]"></i>
+                                <span class="truncate" contenteditable="true" data-placeholder="輸入一句推薦語..." onblur="updateCardData('${section}', ${index}, 'recommendation', this.innerText)">${item.recommendation}</span>
                             </div>
-                            <span class="bg-slate-100 text-slate-600 px-1 py-0.5 rounded text-[7px] font-bold shrink-0" contenteditable="true" onblur="updateCardData(${index}, 'categoryBadge', this.innerText)">
+                            <span class="bg-slate-100 text-slate-600 px-1 py-0.2 rounded text-[6.5px] font-bold shrink-0" contenteditable="true" onblur="updateCardData('${section}', ${index}, 'categoryBadge', this.innerText)">
                                 ${item.categoryBadge}
                             </span>
                         </div>
                     </div>
 
-                    <!-- Floating Card Management Actions (Hover only, invisible in print) -->
-                    <div class="no-print absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition flex items-center gap-1 bg-white/95 backdrop-blur-md px-1 py-0.5 rounded shadow-sm border border-slate-200">
-                        <button onclick="changeCardBorderColor(${index})" class="text-slate-400 hover:text-amber-500 p-0.5" title="更改外框色彩">
-                            <i class="fa-solid fa-palette text-[9px]"></i>
+                    <!-- Floating Card Management Actions -->
+                    <div class="no-print absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition flex items-center gap-0.5 bg-white/95 backdrop-blur-md px-1 py-0.5 rounded shadow-sm border border-slate-200">
+                        <button onclick="changeCardBorderColor('${section}', ${index})" class="text-slate-400 hover:text-amber-500 p-0.5" title="更改外框色彩">
+                            <i class="fa-solid fa-palette text-[8px]"></i>
                         </button>
-                        ${itineraries.length > 1 ? `
-                            <button onclick="deleteCard(${index})" class="text-slate-400 hover:text-rose-600 p-0.5" title="刪除此卡片">
-                                <i class="fa-solid fa-trash-can text-[9px]"></i>
-                            </button>
-                        ` : ''}
+                        <button onclick="deleteCard('${section}', ${index})" class="text-slate-400 hover:text-rose-600 p-0.5" title="刪除此卡片">
+                            <i class="fa-solid fa-trash-can text-[8px]"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAllSections() {
+            // Render Mainland Cards
+            const mainlandContainer = document.getElementById('mainland-cards-container');
+            mainlandContainer.innerHTML = '';
+            mainlandCards.forEach((item, index) => {
+                const el = document.createElement('div');
+                el.innerHTML = createCardHTML(item, index, 'mainland');
+                mainlandContainer.appendChild(el.firstElementChild);
+            });
+
+            // Render Islands Cards
+            const islandsContainer = document.getElementById('islands-cards-container');
+            islandsContainer.innerHTML = '';
+            if (islandsCards.length === 0) {
+                islandsContainer.innerHTML = `
+                    <div class="col-span-2 py-2 px-3 bg-slate-50 border border-dashed border-slate-200 rounded-lg text-center text-[8px] text-slate-400 flex items-center justify-center gap-1.5 no-print">
+                        <span>目前尚未新增離島行程</span>
+                        <button onclick="addNewCard('islands')" class="text-emerald-600 hover:underline font-bold">＋ 點此新增第 1 個離島行程</button>
                     </div>
                 `;
+            } else {
+                islandsCards.forEach((item, index) => {
+                    const el = document.createElement('div');
+                    el.innerHTML = createCardHTML(item, index, 'islands');
+                    islandsContainer.appendChild(el.firstElementChild);
+                });
+            }
 
-                container.appendChild(cardEl);
-            });
+            updateSectionCounters();
         }
 
-        function updateCardData(index, field, value) {
-            if (itineraries[index]) {
-                itineraries[index][field] = value.trim();
+        function getSectionArray(section) {
+            return section === 'mainland' ? mainlandCards : islandsCards;
+        }
+
+        function updateCardData(section, index, field, value) {
+            const arr = getSectionArray(section);
+            if (arr[index]) {
+                arr[index][field] = value.trim();
             }
         }
 
-        function updateTagText(cardIdx, tagIdx, value) {
-            if (itineraries[cardIdx] && itineraries[cardIdx].tags[tagIdx]) {
-                itineraries[cardIdx].tags[tagIdx].text = value.trim();
+        function updateTagText(section, cardIdx, tagIdx, value) {
+            const arr = getSectionArray(section);
+            if (arr[cardIdx] && arr[cardIdx].tags[tagIdx]) {
+                arr[cardIdx].tags[tagIdx].text = value.trim();
             }
         }
 
-        function updateBulletPrefix(cardIdx, bulletIdx, value) {
-            if (itineraries[cardIdx] && itineraries[cardIdx].bullets[bulletIdx]) {
-                itineraries[cardIdx].bullets[bulletIdx].prefix = value.replace(/:$/, '').trim();
+        function updateBulletPrefix(section, cardIdx, bulletIdx, value) {
+            const arr = getSectionArray(section);
+            if (arr[cardIdx] && arr[cardIdx].bullets[bulletIdx]) {
+                arr[cardIdx].bullets[bulletIdx].prefix = value.replace(/:$/, '').trim();
             }
         }
 
-        function updateBulletText(cardIdx, bulletIdx, value) {
-            if (itineraries[cardIdx] && itineraries[cardIdx].bullets[bulletIdx]) {
-                itineraries[cardIdx].bullets[bulletIdx].text = value.trim();
+        function updateBulletText(section, cardIdx, bulletIdx, value) {
+            const arr = getSectionArray(section);
+            if (arr[cardIdx] && arr[cardIdx].bullets[bulletIdx]) {
+                arr[cardIdx].bullets[bulletIdx].text = value.trim();
             }
         }
 
-        // Add a new tag to a card (Max 4)
-        function addTagToCard(cIdx) {
-            if (itineraries[cIdx].tags.length >= 4) return;
-            itineraries[cIdx].tags.push({
-                text: "熱門特色",
-                bg: "#0284c7",
+        function addTagToCard(section, cIdx) {
+            const arr = getSectionArray(section);
+            if (arr[cIdx].tags.length >= 4) return;
+            arr[cIdx].tags.push({
+                text: "特色亮點",
+                bg: section === 'mainland' ? "#0284c7" : "#059669",
                 textCol: "#ffffff"
             });
-            renderCards();
+            renderAllSections();
         }
 
-        function addNewCard() {
-            if (itineraries.length >= MAX_CARDS) return;
+        function addNewCard(section) {
+            if (section === 'mainland') {
+                if (mainlandCards.length >= MAX_MAINLAND_CARDS) return;
+                const presetColors = ['#bae6fd', '#fed7aa', '#fde68a', '#a5f3fc', '#c7d2fe', '#a7f3d0', '#fecaca', '#cbd5e1'];
+                const cardColor = presetColors[mainlandCards.length % presetColors.length];
 
-            const presetColors = ['#bae6fd', '#fed7aa', '#fde68a', '#a5f3fc', '#c7d2fe', '#a7f3d0', '#fecaca', '#cbd5e1', '#fca5a5', '#bbf7d0'];
-            const cardColor = presetColors[itineraries.length % presetColors.length];
+                mainlandCards.push({
+                    id: `mainland-${Date.now()}`,
+                    category: "mainland",
+                    mainTitle: `本島行程 ${mainlandCards.length + 1}`,
+                    subTitle: "請點擊輸入副標題與景點行程路線說明",
+                    price: "$999",
+                    priceUnit: "/人",
+                    departureDate: "即日起天天出發",
+                    borderColor: cardColor,
+                    tags: [
+                        { text: "熱門推薦", bg: "#2563eb", textCol: "#ffffff" },
+                        { text: "精選好康", bg: "#0284c7", textCol: "#ffffff" }
+                    ],
+                    bullets: [
+                        { prefix: "行程亮點 1", text: "" },
+                        { prefix: "行程亮點 2", text: "" },
+                        { prefix: "行程亮點 3", text: "" }
+                    ],
+                    recommendation: "經典行程全新升級，給您最優質的放鬆旅行體驗",
+                    categoryBadge: "精選推薦",
+                    imgSrc: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
+                });
+            } else if (section === 'islands') {
+                if (islandsCards.length >= MAX_ISLANDS_CARDS) return;
+                const islandColors = ['#a7f3d0', '#6ee7b7'];
+                const islandPhotos = [
+                    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+                ];
 
-            itineraries.push({
-                id: `card-${Date.now()}`,
-                mainTitle: `熱門行程 ${itineraries.length + 1}`,
-                subTitle: "請點擊輸入副標題與景點行程路線說明",
-                price: "$999",
-                priceUnit: "/人",
-                departureDate: "即日起天天出發",
-                borderColor: cardColor,
-                tags: [
-                    { text: "熱門推薦", bg: "#2563eb", textCol: "#ffffff" },
-                    { text: "精選好康", bg: "#059669", textCol: "#ffffff" }
-                ],
-                bullets: [
-                    { prefix: "行程亮點 1", text: "" },
-                    { prefix: "行程亮點 2", text: "" },
-                    { prefix: "行程亮點 3", text: "" }
-                ],
-                recommendation: "經典行程全新升級，給您最優質的放鬆旅行體驗",
-                categoryBadge: "精選推薦",
-                imgSrc: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
-            });
-            renderCards();
+                islandsCards.push({
+                    id: `islands-${Date.now()}`,
+                    category: "islands",
+                    mainTitle: islandsCards.length === 0 ? "澎湖花火海島" : "金門風獅爺巡禮",
+                    subTitle: islandsCards.length === 0 ? "奎壁山摩西分海、跨海大橋與藍洞秘境三日" : "翟山坑道、得月樓洋樓古蹟與戰地風情三日",
+                    price: "$6,999",
+                    priceUnit: "起/人",
+                    departureDate: "4 ~ 10 月出發",
+                    borderColor: islandColors[islandsCards.length % islandColors.length],
+                    tags: [
+                        { text: "海島假期", bg: "#059669", textCol: "#ffffff" },
+                        { text: "保證出團", bg: "#0284c7", textCol: "#ffffff" }
+                    ],
+                    bullets: [
+                        { prefix: "特色 1", text: "" },
+                        { prefix: "特色 2", text: "" },
+                        { prefix: "特色 3", text: "" }
+                    ],
+                    recommendation: "遠離塵囂擁抱蔚藍海岸，感受離島獨特悠閒島嶼步調",
+                    categoryBadge: "離島度假",
+                    imgSrc: islandPhotos[islandsCards.length % islandPhotos.length]
+                });
+            }
+            renderAllSections();
         }
 
-        // Delete a card
-        function deleteCard(cIdx) {
-            if (itineraries.length <= 1) return;
-            itineraries.splice(cIdx, 1);
-            renderCards();
+        function deleteCard(section, cIdx) {
+            const arr = getSectionArray(section);
+            arr.splice(cIdx, 1);
+            renderAllSections();
         }
 
-        // Change card outline border color
-        function changeCardBorderColor(cIdx) {
+        function changeCardBorderColor(section, cIdx) {
+            const arr = getSectionArray(section);
             const colors = ['#bae6fd', '#fed7aa', '#fde68a', '#a5f3fc', '#c7d2fe', '#a7f3d0', '#fecaca', '#cbd5e1'];
             const nextColor = colors[Math.floor(Math.random() * colors.length)];
-            itineraries[cIdx].borderColor = nextColor;
-            renderCards();
+            arr[cIdx].borderColor = nextColor;
+            renderAllSections();
         }
 
+        // Image Modal Management
         const imageModal = document.getElementById('image-modal');
         const modalPreviewImg = document.getElementById('modal-preview-img');
         const imageUrlInput = document.getElementById('image-url-input');
         const localFileInput = document.getElementById('local-file-input');
 
-        function openImageModal(cIdx) {
+        function openImageModal(section, cIdx) {
+            activeSection = section;
             activeCardIndex = cIdx;
-            const currentSrc = itineraries[cIdx].imgSrc;
+            const arr = getSectionArray(section);
+            const currentSrc = arr[cIdx].imgSrc;
             modalPreviewImg.src = currentSrc;
             imageUrlInput.value = currentSrc.startsWith('data:') ? '' : currentSrc;
             localFileInput.value = '';
@@ -555,14 +676,12 @@
             imageModal.classList.add('hidden');
         }
 
-        // Live URL input preview
         imageUrlInput.addEventListener('input', (e) => {
             if (e.target.value.trim()) {
                 modalPreviewImg.src = e.target.value.trim();
             }
         });
 
-        // Computer Local File Reader
         localFileInput.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
@@ -576,21 +695,25 @@
         });
 
         function saveImageChange() {
-            if (modalPreviewImg.src) {
-                itineraries[activeCardIndex].imgSrc = modalPreviewImg.src;
-                renderCards();
+            const arr = getSectionArray(activeSection);
+            if (modalPreviewImg.src && arr[activeCardIndex]) {
+                arr[activeCardIndex].imgSrc = modalPreviewImg.src;
+                renderAllSections();
             }
             closeImageModal();
         }
 
+        // Tag Modal Management
         const tagModal = document.getElementById('tag-modal');
         const customColorPicker = document.getElementById('custom-color-picker');
         const customColorHex = document.getElementById('custom-color-hex');
 
-        function openTagModal(triggerEl, cIdx, tIdx) {
+        function openTagModal(section, cIdx, tIdx) {
+            activeSection = section;
             activeCardIndex = cIdx;
             activeTagIndex = tIdx;
-            const currentTag = itineraries[cIdx].tags[tIdx];
+            const arr = getSectionArray(section);
+            const currentTag = arr[cIdx].tags[tIdx];
             customColorPicker.value = currentTag.bg;
             customColorHex.innerText = currentTag.bg;
             tagModal.classList.remove('hidden');
@@ -601,43 +724,44 @@
         }
 
         function applyPresetColor(bg, text) {
-            if (itineraries[activeCardIndex] && itineraries[activeCardIndex].tags[activeTagIndex]) {
-                itineraries[activeCardIndex].tags[activeTagIndex].bg = bg;
-                itineraries[activeCardIndex].tags[activeTagIndex].textCol = text;
-                renderCards();
+            const arr = getSectionArray(activeSection);
+            if (arr[activeCardIndex] && arr[activeCardIndex].tags[activeTagIndex]) {
+                arr[activeCardIndex].tags[activeTagIndex].bg = bg;
+                arr[activeCardIndex].tags[activeTagIndex].textCol = text;
+                renderAllSections();
             }
             closeTagModal();
         }
 
         function applyCustomColor(hex) {
             customColorHex.innerText = hex;
-            if (itineraries[activeCardIndex] && itineraries[activeCardIndex].tags[activeTagIndex]) {
-                itineraries[activeCardIndex].tags[activeTagIndex].bg = hex;
-                itineraries[activeCardIndex].tags[activeTagIndex].textCol = '#ffffff';
-                renderCards();
+            const arr = getSectionArray(activeSection);
+            if (arr[activeCardIndex] && arr[activeCardIndex].tags[activeTagIndex]) {
+                arr[activeCardIndex].tags[activeTagIndex].bg = hex;
+                arr[activeCardIndex].tags[activeTagIndex].textCol = '#ffffff';
+                renderAllSections();
             }
         }
 
         function deleteCurrentTag() {
-            if (itineraries[activeCardIndex] && itineraries[activeCardIndex].tags) {
-                itineraries[activeCardIndex].tags.splice(activeTagIndex, 1);
-                renderCards();
+            const arr = getSectionArray(activeSection);
+            if (arr[activeCardIndex] && arr[activeCardIndex].tags) {
+                arr[activeCardIndex].tags.splice(activeTagIndex, 1);
+                renderAllSections();
             }
             closeTagModal();
         }
 
-        // Reset to initial clean 1-item state
         function resetDefaultData() {
-            itineraries = JSON.parse(JSON.stringify(defaultSingleItinerary));
-            renderCards();
+            mainlandCards = [JSON.parse(JSON.stringify(defaultMainlandCard))];
+            islandsCards = [];
+            renderAllSections();
         }
 
-        // Native Browser Print to A4 PDF
         function triggerPrint() {
             window.print();
         }
 
-        // Close modals with Escape key
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeImageModal();
@@ -645,9 +769,8 @@
             }
         });
 
-        // Initialize application on page load
         window.addEventListener('DOMContentLoaded', () => {
-            renderCards();
+            renderAllSections();
         });
     </script>
 </body>
