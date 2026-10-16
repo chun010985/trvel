@@ -417,23 +417,23 @@
             const displayUnit = item.priceUnit || "元起/人";
 
             return `
-                <div class="relative bg-white rounded-lg border border-slate-200/90 shadow-2xs hover:shadow-xs transition p-1.5 flex gap-1.5 min-h-[148px] h-auto overflow-hidden group" style="border-color: ${item.borderColor || '#e2e8f0'};">
-                    <!-- Left: Rectangular Poster Image & Moved Tool Actions -->
-                    <div class="relative w-[96px] shrink-0 h-[142px] rounded-md overflow-hidden border border-slate-200/80 bg-slate-100 cursor-pointer group/img" onclick="openImageModal('${section}', ${index})" title="點擊更換圖片">
+                <div class="relative bg-white rounded-lg border border-slate-200/90 shadow-2xs hover:shadow-xs transition p-1.5 flex gap-2 min-h-[174px] h-auto overflow-hidden group" style="border-color: ${item.borderColor || '#e2e8f0'};">
+                    <!-- Left: Rectangular Poster Image (Enlarged) & Moved Tool Actions -->
+                    <div class="relative w-[118px] shrink-0 h-[164px] rounded-md overflow-hidden border border-slate-200/80 bg-slate-100 cursor-pointer group/img" onclick="openImageModal('${section}', ${index})" title="點擊更換圖片">
                         <img src="${item.imgSrc}" alt="${item.mainTitle}" class="w-full h-full object-cover transition duration-300 group-hover/img:scale-105" onerror="this.src='https://placehold.co/300x400/e2e8f0/64748b?text=點擊換圖'">
                         
-                        <div class="no-print absolute inset-0 bg-slate-900/40 opacity-0 group-hover/img:opacity-100 transition flex flex-col items-center justify-center text-white text-[8px] font-bold gap-0.5">
-                            <i class="fa-solid fa-camera text-xs"></i>
+                        <div class="no-print absolute inset-0 bg-slate-900/40 opacity-0 group-hover/img:opacity-100 transition flex flex-col items-center justify-center text-white text-[9px] font-bold gap-0.5">
+                            <i class="fa-solid fa-camera text-sm"></i>
                             <span>換圖</span>
                         </div>
 
                         <!-- Repositioned Management Actions: Left Image Top Corner (No longer obstructs price) -->
                         <div class="no-print absolute top-1 left-1 opacity-0 group-hover:opacity-100 transition flex items-center gap-1 bg-black/70 backdrop-blur-xs px-1 py-0.5 rounded shadow-sm z-10" onclick="event.stopPropagation()">
                             <button onclick="changeCardBorderColor('${section}', ${index})" class="text-white hover:text-amber-400 p-0.5 transition" title="更改外框色彩">
-                                <i class="fa-solid fa-palette text-[8.5px]"></i>
+                                <i class="fa-solid fa-palette text-[9px]"></i>
                             </button>
                             <button onclick="deleteCard('${section}', ${index})" class="text-white hover:text-rose-400 p-0.5 transition" title="刪除此卡片">
-                                <i class="fa-solid fa-trash-can text-[8.5px]"></i>
+                                <i class="fa-solid fa-trash-can text-[9px]"></i>
                             </button>
                         </div>
                     </div>
@@ -685,7 +685,7 @@
 
             cropperTargetImg.onload = function() {
                 cropperInstance = new Cropper(cropperTargetImg, {
-                    aspectRatio: 96 / 142, // Exactly matches the card poster ratio
+                    aspectRatio: 118 / 164, // Matches the new enlarged card poster ratio
                     viewMode: 1,
                     autoCropArea: 0.95,
                     responsive: true,
@@ -761,10 +761,10 @@
                 return;
             }
             
-            // Get cropped high-resolution canvas
+            // Get cropped high-resolution canvas based on new enlarged aspect ratio
             const croppedCanvas = cropperInstance.getCroppedCanvas({
-                width: 300,
-                height: 444,
+                width: 354, // 3x resolution of 118px
+                height: 492, // 3x resolution of 164px
                 imageSmoothingEnabled: true,
                 imageSmoothingQuality: 'high'
             });
