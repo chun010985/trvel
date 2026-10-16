@@ -151,7 +151,7 @@
 
                 <!-- Main Slogan -->
                 <div class="ml-1.5 flex items-center gap-1.5">
-                    <h2 class="text-[13px] font-black text-slate-900 tracking-tight leading-none" contenteditable="true" data-placeholder="輸入主題標題">國旅精選 12 大熱門行程</h2>
+                    <h2 class="text-[13px] font-black text-slate-900 tracking-tight leading-none" contenteditable="true" data-placeholder="輸入主題標題">國旅精選 10 大熱門行程</h2>
                     <span class="bg-rose-500 text-white text-[8px] font-bold px-1 py-0.5 rounded tracking-wider" contenteditable="true" data-placeholder="標籤">圖文推廣手冊</span>
                 </div>
             </div>
@@ -444,9 +444,9 @@
                     <!-- Right Content Column -->
                     <div class="flex-1 flex flex-col justify-between overflow-hidden">
                         <div>
-                            <!-- Row 1: Main Title (Adjusted to 13px to prevent A4 overflow) + Price ($____元起/人) -->
+                            <!-- Row 1: Main Title (Adjusted to 11px to prevent A4 overflow) + Price ($____元起/人) -->
                             <div class="flex items-start justify-between gap-1 leading-tight">
-                                <h3 class="font-extrabold text-[13px] text-slate-900 tracking-tight flex-1 break-words leading-tight" contenteditable="true" data-placeholder="大主題名稱(限30字)" oninput="enforceTitleLimit(this, 30)" onblur="updateCardData('${section}', ${index}, 'mainTitle', this.innerText)">
+                                <h3 class="font-extrabold text-[11px] text-slate-900 tracking-tight flex-1 break-words leading-tight" contenteditable="true" data-placeholder="大主題名稱(限40字)" oninput="enforceTitleLimit(this, 40)" onblur="updateCardData('${section}', ${index}, 'mainTitle', this.innerText)">
                                     ${item.mainTitle}
                                 </h3>
                                 <div class="shrink-0 flex items-baseline text-rose-600 font-black pl-1 self-start whitespace-nowrap">
@@ -456,8 +456,8 @@
                                 </div>
                             </div>
 
-                            <!-- Row 2: Subtitle (10px) -->
-                            <div class="text-[10px] text-slate-500 font-semibold leading-tight truncate mt-0.5" contenteditable="true" data-placeholder="小標題說明" onblur="updateCardData('${section}', ${index}, 'subTitle', this.innerText)">
+                            <!-- Row 2: Subtitle (8px) -->
+                            <div class="text-[8px] text-slate-500 font-semibold leading-tight truncate mt-0.5" contenteditable="true" data-placeholder="小標題說明" onblur="updateCardData('${section}', ${index}, 'subTitle', this.innerText)">
                                 ${item.subTitle}
                             </div>
 
@@ -559,7 +559,7 @@
         function updateCardData(section, index, field, value) {
             const arr = getSectionArray(section);
             if (arr[index]) {
-                const sanitizedValue = field === 'mainTitle' ? value.trim().substring(0, 30) : value.trim();
+                const sanitizedValue = field === 'mainTitle' ? value.trim().substring(0, 40) : value.trim();
                 arr[index][field] = sanitizedValue;
             }
         }
