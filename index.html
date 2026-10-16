@@ -176,14 +176,13 @@
         <!-- Main Scrolling Content Area inside A4 page -->
         <div class="flex-1 flex flex-col justify-start gap-1 py-1 overflow-hidden">
             
-            <!-- SECTION 1: 台灣本島 (Max 10) -->
+            <!-- SECTION 1: 台灣本島 (Max 8) -->
             <div class="flex flex-col">
                 <div class="flex items-center justify-between bg-gradient-to-r from-sky-50 to-white px-2 py-0.5 rounded border-l-3 border-[#1090d0] mb-1">
                     <div class="flex items-center gap-1.5">
                         <span class="text-[9.5px] font-black text-[#1090d0] tracking-tight flex items-center gap-1">
                             <i class="fa-solid fa-mountain-sun text-[8px]"></i> 台灣本島行程
                         </span>
-                        <span id="mainland-counter" class="text-[7.5px] font-bold px-1.5 py-0.2 rounded-full bg-sky-100 text-sky-700">1 / 8</span>
                     </div>
                     <div class="text-[7.5px] text-slate-400 font-medium no-print">
                         <button onclick="addNewCard('mainland')" id="quick-add-mainland" class="text-[#1090d0] hover:underline font-bold flex items-center gap-0.5" style="display: inline-flex;">
@@ -192,106 +191,7 @@
                     </div>
                 </div>
 
-                <div id="mainland-cards-container" class="grid grid-cols-2 gap-x-2.5 gap-y-1.5 content-start"><div class="relative bg-white rounded-lg border border-slate-200/90 shadow-2xs hover:shadow-xs transition p-1.5 flex gap-1.5 min-h-[160px] h-auto overflow-hidden group" style="border-color: #bae6fd;">
-                    <!-- Left: Rectangular Poster Image & Moved Tool Actions -->
-                    <div class="relative w-[96px] shrink-0 h-[150px] rounded-md overflow-hidden border border-slate-200/80 bg-slate-100 cursor-pointer group/img" onclick="openImageModal('mainland', 0)" title="點擊更換圖片">
-                        <img src="https://placehold.co/300x400/e2e8f0/64748b?text=點擊換圖" alt="港灣寫意" class="w-full h-full object-cover transition duration-300 group-hover/img:scale-105" onerror="this.src='https://placehold.co/300x400/e2e8f0/64748b?text=點擊換圖'">
-                        
-                        <div class="no-print absolute inset-0 bg-slate-900/40 opacity-0 group-hover/img:opacity-100 transition flex flex-col items-center justify-center text-white text-[8px] font-bold gap-0.5">
-                            <i class="fa-solid fa-camera text-xs"></i>
-                            <span>換圖</span>
-                        </div>
-
-                        <!-- Repositioned Management Actions: Left Image Top Corner (No longer obstructs price) -->
-                        <div class="no-print absolute top-1 left-1 opacity-0 group-hover:opacity-100 transition flex items-center gap-1 bg-black/70 backdrop-blur-xs px-1 py-0.5 rounded shadow-sm z-10" onclick="event.stopPropagation()">
-                            <button onclick="changeCardBorderColor('mainland', 0)" class="text-white hover:text-amber-400 p-0.5 transition" title="更改外框色彩">
-                                <i class="fa-solid fa-palette text-[8.5px]"></i>
-                            </button>
-                            <button onclick="deleteCard('mainland', 0)" class="text-white hover:text-rose-400 p-0.5 transition" title="刪除此卡片">
-                                <i class="fa-solid fa-trash-can text-[8.5px]"></i>
-                            </button>
-                        </div>
-
-                        <div class="absolute bottom-0.5 right-0.5 bg-black/60 backdrop-blur-xs text-white text-[6.5px] px-1 py-0.2 rounded font-mono">
-                            本島 1
-                        </div>
-                    </div>
-
-                    <!-- Right Content Column -->
-                    <div class="flex-1 flex flex-col justify-between overflow-hidden">
-                        <div>
-                            <!-- Row 1: Main Title (Auto Wrap Support, Max 30 chars) + Price -->
-                            <div class="flex items-start justify-between gap-1 leading-snug">
-                                <h3 class="font-extrabold text-[11.5px] text-slate-900 tracking-tight flex-1 break-words leading-tight" contenteditable="true" data-placeholder="大主題名稱(限30字)" oninput="enforceTitleLimit(this, 30)" onblur="updateCardData('mainland', 0, 'mainTitle', this.innerText)"><br></h3>
-                                <div class="shrink-0 flex items-baseline text-rose-600 font-extrabold pl-1 self-start">
-                                    <span class="text-[11.5px] tracking-tight" contenteditable="true" data-placeholder="$000" onblur="updateCardData('mainland', 0, 'price', this.innerText)">$599</span>
-                                    <span class="text-[7.5px] text-rose-500 font-semibold ml-0.5" contenteditable="true" data-placeholder="單位" onblur="updateCardData('mainland', 0, 'priceUnit', this.innerText)">/人</span>
-                                </div>
-                            </div>
-
-                            <!-- Row 2: Subtitle -->
-                            <div class="text-[8px] text-slate-500 font-medium leading-tight truncate mt-0.5" contenteditable="true" data-placeholder="小標題說明" onblur="updateCardData('mainland', 0, 'subTitle', this.innerText)">
-                                獅頭山、金山與正濱漁港網美散策一日
-                            </div>
-
-                            <!-- Row 3: Departure Date Pill Row -->
-                            <div class="flex items-center gap-1 my-0.5 text-[7.5px]">
-                                <span class="bg-slate-100 text-slate-700 px-1 py-0.2 rounded font-semibold flex items-center gap-1 border border-slate-200/60" contenteditable="true" data-placeholder="出發日期" onblur="updateCardData('mainland', 0, 'departureDate', this.innerText)">
-                                    <i class="fa-regular fa-calendar-check text-[#1090d0] text-[7px]"></i> 8 ~ 12 月出發
-                                </span>
-                            </div>
-
-                            <!-- Row 4: Dedicated Tags Row (Up to 4 tags standalone) -->
-                            <div class="flex items-center gap-1 mb-0.5 text-[7.5px] min-h-[17px] overflow-hidden">
-                                
-                                    <span class="px-1.5 py-0.2 rounded-full font-bold cursor-pointer transition shadow-2xs text-[7px] tracking-tight hover:brightness-110 flex items-center gap-0.5" style="background-color: #2563eb; color: #ffffff;" onclick="openTagModal('mainland', 0, 0)" title="點擊設定標籤顏色">
-                                        <span contenteditable="true" onclick="event.stopPropagation()" onblur="updateTagText('mainland', 0, 0, this.innerText)" data-placeholder="標籤">散客湊團</span>
-                                    </span>
-                                
-                                    <span class="px-1.5 py-0.2 rounded-full font-bold cursor-pointer transition shadow-2xs text-[7px] tracking-tight hover:brightness-110 flex items-center gap-0.5" style="background-color: #0284c7; color: #ffffff;" onclick="openTagModal('mainland', 0, 1)" title="點擊設定標籤顏色">
-                                        <span contenteditable="true" onclick="event.stopPropagation()" onblur="updateTagText('mainland', 0, 1, this.innerText)" data-placeholder="標籤">超值輕旅</span>
-                                    </span>
-                                
-                                
-                                    <button onclick="addTagToCard('mainland', 0)" class="no-print text-slate-400 hover:text-[#1090d0] px-1 py-0.2 text-[7px] rounded border border-dashed border-slate-300 hover:border-[#1090d0] transition flex items-center gap-0.5" title="新增自訂標籤 (上限4個)">
-                                        <i class="fa-solid fa-plus text-[6px]"></i> 標籤 (2/4)
-                                    </button>
-                                
-                            </div>
-
-                            <!-- Row 5: Highlight Bullet Points (Clean & fully blank editable) -->
-                            <ul class="space-y-0.5 text-[7.5px] text-slate-700 font-medium leading-tight">
-                                
-                                    <li class="flex items-start gap-1">
-                                        <i class="fa-solid fa-star text-amber-500 mt-[2px] text-[5.5px] shrink-0"></i>
-                                        <div contenteditable="true" data-placeholder="點此輸入行程亮點特色內容..." class="text-slate-600 font-normal flex-1 outline-none break-words min-h-[12px]" onblur="updateBulletText('mainland', 0, 0, this.innerText)"></div>
-                                    </li>
-                                
-                                    <li class="flex items-start gap-1">
-                                        <i class="fa-solid fa-star text-amber-500 mt-[2px] text-[5.5px] shrink-0"></i>
-                                        <div contenteditable="true" data-placeholder="點此輸入行程亮點特色內容..." class="text-slate-600 font-normal flex-1 outline-none break-words min-h-[12px]" onblur="updateBulletText('mainland', 0, 1, this.innerText)"></div>
-                                    </li>
-                                
-                                    <li class="flex items-start gap-1">
-                                        <i class="fa-solid fa-star text-amber-500 mt-[2px] text-[5.5px] shrink-0"></i>
-                                        <div contenteditable="true" data-placeholder="點此輸入行程亮點特色內容..." class="text-slate-600 font-normal flex-1 outline-none break-words min-h-[12px]" onblur="updateBulletText('mainland', 0, 2, this.innerText)"></div>
-                                    </li>
-                                
-                            </ul>
-                        </div>
-
-                        <!-- Card Bottom Strip: Recommendation & Category Badge -->
-                        <div class="mt-0.5 pt-0.5 border-t border-slate-100 flex items-center justify-between text-[7px] text-slate-500">
-                            <div class="truncate flex items-center gap-0.5 flex-1 pr-1">
-                                <i class="fa-solid fa-quote-left text-slate-300 text-[5.5px]"></i>
-                                <span class="truncate" contenteditable="true" data-placeholder="輸入一句推薦語..." onblur="updateCardData('mainland', 0, 'recommendation', this.innerText)">海風輕拂、依山傍海，週末超值療癒散策首選</span>
-                            </div>
-                            <span class="bg-slate-100 text-slate-600 px-1 py-0.2 rounded text-[6.5px] font-bold shrink-0" contenteditable="true" onblur="updateCardData('mainland', 0, 'categoryBadge', this.innerText)">
-                                超值輕旅
-                            </span>
-                        </div>
-                    </div>
-                </div></div>
+                <div id="mainland-cards-container" class="grid grid-cols-2 gap-x-2.5 gap-y-1.5 content-start"></div>
             </div>
 
             <!-- SECTION 2: 台灣離島 (Max 2) -->
@@ -301,7 +201,6 @@
                         <span class="text-[9.5px] font-black text-emerald-700 tracking-tight flex items-center gap-1">
                             <i class="fa-solid fa-umbrella-beach text-[8px]"></i> 台灣離島行程
                         </span>
-                        <span id="islands-counter" class="text-[7.5px] font-bold px-1.5 py-0.2 rounded-full bg-emerald-100 text-emerald-700">0 / 2</span>
                     </div>
                     <div class="text-[7.5px] text-slate-400 font-medium no-print">
                         <button onclick="addNewCard('islands')" id="quick-add-islands" class="text-emerald-600 hover:underline font-bold flex items-center gap-0.5" style="display: inline-flex;">
@@ -344,48 +243,56 @@
 
     </main>
 
-    <!-- Image Edit & Upload Modal (No alerts used) -->
-    <div id="image-modal" class="no-print fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-5 shadow-2xl border border-slate-200">
+    <!-- Image Edit, Upload & Crop Modal -->
+    <div id="image-modal" class="no-print fixed inset-0 bg-slate-900/70 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-5 shadow-2xl border border-slate-200">
             <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
                 <h3 class="font-bold text-sm text-slate-800 flex items-center gap-1.5">
-                    <i class="fa-solid fa-image text-[#1090d0]"></i> 更換行程封面圖片
+                    <i class="fa-solid fa-crop-simple text-[#1090d0]"></i> 更換並自訂裁切圖片
                 </h3>
                 <button onclick="closeImageModal()" class="text-slate-400 hover:text-slate-600 p-1">
                     <i class="fa-solid fa-xmark text-sm"></i>
                 </button>
             </div>
 
-            <div class="space-y-4">
-                <!-- Method 1: Local Computer File Upload -->
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">
-                        <i class="fa-solid fa-upload text-sky-600 mr-1"></i> 從電腦選擇圖檔上傳
-                    </label>
-                    <input type="file" id="local-file-input" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-sky-50 file:text-[#1090d0] hover:file:bg-sky-100 cursor-pointer border border-dashed border-slate-300 rounded-lg p-2">
-                </div>
-
-                <div class="relative flex items-center justify-center my-1">
-                    <div class="border-t border-slate-200 w-full"></div>
-                    <span class="bg-white px-2 text-[10px] text-slate-400 font-semibold absolute">或使用線上圖片網址</span>
-                </div>
-
-                <!-- Method 2: Web Image URL -->
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">
-                        <i class="fa-solid fa-link text-sky-600 mr-1"></i> 輸入圖片 URL 連結
-                    </label>
-                    <input type="url" id="image-url-input" placeholder="https://images.unsplash.com/..." class="w-full text-xs p-2 border border-slate-300 rounded-lg focus:ring-1 focus:ring-[#1090d0] outline-none">
-                </div>
-
-                <!-- Image Preview Area -->
-                <div class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                    <div class="w-14 h-20 bg-slate-200 rounded-md overflow-hidden shrink-0 flex items-center justify-center">
-                        <img id="modal-preview-img" src="" alt="預覽" class="w-full h-full object-cover">
+            <div class="space-y-3">
+                <!-- Source Selection -->
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-700 mb-1">
+                            <i class="fa-solid fa-upload text-sky-600 mr-1"></i> 從電腦選擇圖檔
+                        </label>
+                        <input type="file" id="local-file-input" accept="image/*" class="w-full text-[10px] text-slate-500 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-[10px] file:font-semibold file:bg-sky-50 file:text-[#1090d0] hover:file:bg-sky-100 cursor-pointer border border-dashed border-slate-300 rounded-lg p-1.5">
                     </div>
-                    <div class="text-[11px] text-slate-500">
-                        <p class="font-bold text-slate-700">直式長方形建議比例</p>
-                        <p>建議使用 3:4 或 2:3 比例圖檔，海報效果最佳。</p>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-700 mb-1">
+                            <i class="fa-solid fa-link text-sky-600 mr-1"></i> 網址連結載入
+                        </label>
+                        <div class="flex gap-1">
+                            <input type="url" id="image-url-input" placeholder="貼上圖片 URL" class="w-full text-xs p-1.5 border border-slate-300 rounded-lg focus:ring-1 focus:ring-[#1090d0] outline-none">
+                            <button onclick="loadImageFromUrl()" class="px-2 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-bold shrink-0">載入</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Cropping Box -->
+                <div class="relative w-full h-[260px] bg-slate-900 rounded-xl overflow-hidden flex items-center justify-center border border-slate-200">
+                    <img id="cropper-target-img" src="" alt="裁切影像" class="max-h-full max-w-full block">
+                </div>
+
+                <!-- Cropper Controls Toolbar -->
+                <div class="flex items-center justify-between bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200 text-xs">
+                    <div class="flex items-center gap-1.5 text-slate-600 font-medium">
+                        <span>裁切比例：</span>
+                        <button onclick="setCropRatio(96/142)" class="px-2 py-0.5 bg-white border border-slate-300 rounded font-bold text-[#1090d0] hover:bg-sky-50" title="海報標準直向比例">海報 (96:142)</button>
+                        <button onclick="setCropRatio(3/4)" class="px-2 py-0.5 bg-white border border-slate-200 rounded hover:bg-slate-100">3:4</button>
+                        <button onclick="setCropRatio(NaN)" class="px-2 py-0.5 bg-white border border-slate-200 rounded hover:bg-slate-100">自由</button>
+                    </div>
+                    <div class="flex items-center gap-1 text-slate-600">
+                        <button onclick="rotateCropper(-90)" class="p-1 hover:text-sky-600" title="向左旋轉90度"><i class="fa-solid fa-rotate-left"></i></button>
+                        <button onclick="rotateCropper(90)" class="p-1 hover:text-sky-600" title="向右旋轉90度"><i class="fa-solid fa-rotate-right"></i></button>
+                        <button onclick="zoomCropper(0.1)" class="p-1 hover:text-sky-600" title="放大"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button onclick="zoomCropper(-0.1)" class="p-1 hover:text-sky-600" title="縮小"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
                     </div>
                 </div>
             </div>
@@ -394,8 +301,8 @@
                 <button onclick="closeImageModal()" class="px-3 py-1.5 text-xs text-slate-600 hover:bg-slate-100 rounded-lg font-semibold transition">
                     取消
                 </button>
-                <button onclick="saveImageChange()" class="px-4 py-1.5 text-xs bg-[#1090d0] hover:bg-[#0c78af] text-white rounded-lg font-bold shadow-sm transition">
-                    確認更換圖片
+                <button onclick="saveImageChange()" class="px-4 py-1.5 text-xs bg-[#1090d0] hover:bg-[#0c78af] text-white rounded-lg font-bold shadow-sm transition flex items-center gap-1">
+                    <i class="fa-solid fa-check"></i> 確認裁切並套用
                 </button>
             </div>
         </div>
@@ -486,11 +393,9 @@
             // Mainland
             const mlBtn = document.getElementById('add-mainland-btn');
             const mlBtnText = document.getElementById('add-mainland-btn-text');
-            const mlCounter = document.getElementById('mainland-counter');
             const mlQuickAdd = document.getElementById('quick-add-mainland');
             
             if (mlBtnText) mlBtnText.innerText = `＋ 本島 (${mainlandCards.length}/${MAX_MAINLAND_CARDS})`;
-            if (mlCounter) mlCounter.innerText = `${mainlandCards.length} / ${MAX_MAINLAND_CARDS}`;
             const isMlFull = mainlandCards.length >= MAX_MAINLAND_CARDS;
             if (mlBtn) mlBtn.disabled = isMlFull;
             if (mlQuickAdd) mlQuickAdd.style.display = isMlFull ? 'none' : 'inline-flex';
@@ -498,11 +403,9 @@
             // Islands
             const islBtn = document.getElementById('add-islands-btn');
             const islBtnText = document.getElementById('add-islands-btn-text');
-            const islCounter = document.getElementById('islands-counter');
             const islQuickAdd = document.getElementById('quick-add-islands');
 
             if (islBtnText) islBtnText.innerText = `＋ 離島 (${islandsCards.length}/${MAX_ISLANDS_CARDS})`;
-            if (islCounter) islCounter.innerText = `${islandsCards.length} / ${MAX_ISLANDS_CARDS}`;
             const isIslFull = islandsCards.length >= MAX_ISLANDS_CARDS;
             if (islBtn) islBtn.disabled = isIslFull;
             if (islQuickAdd) islQuickAdd.style.display = isIslFull ? 'none' : 'inline-flex';
@@ -514,90 +417,86 @@
             const displayUnit = item.priceUnit || "元起/人";
 
             return `
-                <div class="relative bg-white rounded-lg border border-slate-200/90 shadow-2xs hover:shadow-xs transition p-1.5 flex gap-2 min-h-[160px] h-auto overflow-hidden group" style="border-color: ${item.borderColor || '#e2e8f0'};">
+                <div class="relative bg-white rounded-lg border border-slate-200/90 shadow-2xs hover:shadow-xs transition p-1.5 flex gap-1.5 min-h-[148px] h-auto overflow-hidden group" style="border-color: ${item.borderColor || '#e2e8f0'};">
                     <!-- Left: Rectangular Poster Image & Moved Tool Actions -->
-                    <div class="relative w-[100px] shrink-0 h-[152px] rounded-md overflow-hidden border border-slate-200/80 bg-slate-100 cursor-pointer group/img" onclick="openImageModal('${section}', ${index})" title="點擊更換圖片">
+                    <div class="relative w-[96px] shrink-0 h-[142px] rounded-md overflow-hidden border border-slate-200/80 bg-slate-100 cursor-pointer group/img" onclick="openImageModal('${section}', ${index})" title="點擊更換圖片">
                         <img src="${item.imgSrc}" alt="${item.mainTitle}" class="w-full h-full object-cover transition duration-300 group-hover/img:scale-105" onerror="this.src='https://placehold.co/300x400/e2e8f0/64748b?text=點擊換圖'">
                         
-                        <div class="no-print absolute inset-0 bg-slate-900/40 opacity-0 group-hover/img:opacity-100 transition flex flex-col items-center justify-center text-white text-[9px] font-bold gap-1">
-                            <i class="fa-solid fa-camera text-sm"></i>
+                        <div class="no-print absolute inset-0 bg-slate-900/40 opacity-0 group-hover/img:opacity-100 transition flex flex-col items-center justify-center text-white text-[8px] font-bold gap-0.5">
+                            <i class="fa-solid fa-camera text-xs"></i>
                             <span>換圖</span>
                         </div>
 
                         <!-- Repositioned Management Actions: Left Image Top Corner (No longer obstructs price) -->
-                        <div class="no-print absolute top-1 left-1 opacity-0 group-hover:opacity-100 transition flex items-center gap-1 bg-black/70 backdrop-blur-xs px-1.5 py-0.5 rounded shadow-sm z-10" onclick="event.stopPropagation()">
+                        <div class="no-print absolute top-1 left-1 opacity-0 group-hover:opacity-100 transition flex items-center gap-1 bg-black/70 backdrop-blur-xs px-1 py-0.5 rounded shadow-sm z-10" onclick="event.stopPropagation()">
                             <button onclick="changeCardBorderColor('${section}', ${index})" class="text-white hover:text-amber-400 p-0.5 transition" title="更改外框色彩">
-                                <i class="fa-solid fa-palette text-[9px]"></i>
+                                <i class="fa-solid fa-palette text-[8.5px]"></i>
                             </button>
                             <button onclick="deleteCard('${section}', ${index})" class="text-white hover:text-rose-400 p-0.5 transition" title="刪除此卡片">
-                                <i class="fa-solid fa-trash-can text-[9px]"></i>
+                                <i class="fa-solid fa-trash-can text-[8.5px]"></i>
                             </button>
-                        </div>
-
-                        <div class="absolute bottom-0.5 right-0.5 bg-black/60 backdrop-blur-xs text-white text-[7.5px] px-1.5 py-0.2 rounded font-mono">
-                            ${section === 'mainland' ? `本島 ${index + 1}` : `離島 ${index + 1}`}
                         </div>
                     </div>
 
                     <!-- Right Content Column -->
                     <div class="flex-1 flex flex-col justify-between overflow-hidden">
                         <div>
-                            <!-- Row 1: Main Title (Auto Wrap, Max 30 chars) + Price ($____元起/人) -->
+                            <!-- Row 1: Main Title (Adjusted to 13px to prevent A4 overflow) + Price ($____元起/人) -->
                             <div class="flex items-start justify-between gap-1 leading-tight">
-                                <h3 class="font-extrabold text-[15px] text-slate-900 tracking-tight flex-1 break-words leading-tight" contenteditable="true" data-placeholder="大主題名稱(限30字)" oninput="enforceTitleLimit(this, 30)" onblur="updateCardData('${section}', ${index}, 'mainTitle', this.innerText)">
+                                <h3 class="font-extrabold text-[13px] text-slate-900 tracking-tight flex-1 break-words leading-tight" contenteditable="true" data-placeholder="大主題名稱(限30字)" oninput="enforceTitleLimit(this, 30)" onblur="updateCardData('${section}', ${index}, 'mainTitle', this.innerText)">
                                     ${item.mainTitle}
                                 </h3>
                                 <div class="shrink-0 flex items-baseline text-rose-600 font-black pl-1 self-start whitespace-nowrap">
-                                    <span class="text-[13px] font-bold mr-[1px]">$</span>
-                                    <span class="text-[17px] tracking-tight leading-none" contenteditable="true" data-placeholder="000" onblur="updateCardData('${section}', ${index}, 'price', this.innerText)">${displayPrice}</span>
-                                    <span class="text-[9px] text-rose-500 font-bold ml-0.5" contenteditable="true" data-placeholder="元起/人" onblur="updateCardData('${section}', ${index}, 'priceUnit', this.innerText)">${displayUnit}</span>
+                                    <span class="text-[11px] font-bold mr-[1px]">$</span>
+                                    <span class="text-[15px] tracking-tight leading-none" contenteditable="true" data-placeholder="000" onblur="updateCardData('${section}', ${index}, 'price', this.innerText)">${displayPrice}</span>
+                                    <span class="text-[8px] text-rose-500 font-bold ml-0.5" contenteditable="true" data-placeholder="元起/人" onblur="updateCardData('${section}', ${index}, 'priceUnit', this.innerText)">${displayUnit}</span>
                                 </div>
                             </div>
 
-                            <!-- Row 2: Subtitle (Enlarged to 11px) -->
-                            <div class="text-[11px] text-slate-500 font-semibold leading-tight truncate mt-0.5" contenteditable="true" data-placeholder="小標題說明" onblur="updateCardData('${section}', ${index}, 'subTitle', this.innerText)">
+                            <!-- Row 2: Subtitle (10px) -->
+                            <div class="text-[10px] text-slate-500 font-semibold leading-tight truncate mt-0.5" contenteditable="true" data-placeholder="小標題說明" onblur="updateCardData('${section}', ${index}, 'subTitle', this.innerText)">
                                 ${item.subTitle}
                             </div>
 
-                            <!-- Row 3: Departure Date Pill Row (Enlarged to 10.5px) -->
-                            <div class="flex items-center gap-1 my-1 text-[10.5px]">
-                                <span class="bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-bold flex items-center gap-1 border border-slate-200/60" contenteditable="true" data-placeholder="出發日期" onblur="updateCardData('${section}', ${index}, 'departureDate', this.innerText)">
-                                    <i class="fa-regular fa-calendar-check text-[#1090d0] text-[9.5px]"></i> ${item.departureDate}
+                            <!-- Row 3: Departure Date Pill Row (9px) -->
+                            <div class="flex items-center gap-1 my-0.5 text-[9px]">
+                                <span class="bg-slate-100 text-slate-700 px-1.5 py-0.2 rounded font-bold flex items-center gap-1 border border-slate-200/60" contenteditable="true" data-placeholder="出發日期" onblur="updateCardData('${section}', ${index}, 'departureDate', this.innerText)">
+                                    <i class="fa-regular fa-calendar-check text-[#1090d0] text-[8px]"></i> ${item.departureDate}
                                 </span>
                             </div>
 
-                            <!-- Row 4: Dedicated Tags Row (Enlarged to 9.5px, Up to 4 tags) -->
-                            <div class="flex items-center gap-1.5 mb-1 text-[9.5px] min-h-[20px] overflow-hidden">
+                            <!-- Row 4: Dedicated Tags Row (8.5px, Up to 4 tags) -->
+                            <div class="flex items-center gap-1 mb-0.5 text-[8.5px] min-h-[18px] overflow-hidden">
                                 ${item.tags.slice(0, 4).map((tag, tIdx) => `
-                                    <span class="px-2 py-0.5 rounded-full font-bold cursor-pointer transition shadow-2xs text-[9.5px] tracking-tight hover:brightness-110 flex items-center gap-0.5" style="background-color: ${tag.bg}; color: ${tag.textCol};" onclick="openTagModal('${section}', ${index}, ${tIdx})" title="點擊設定標籤顏色">
+                                    <span class="px-1.5 py-0.2 rounded-full font-bold cursor-pointer transition shadow-2xs text-[8px] tracking-tight hover:brightness-110 flex items-center gap-0.5" style="background-color: ${tag.bg}; color: ${tag.textCol};" onclick="openTagModal('${section}', ${index}, ${tIdx})" title="點擊設定標籤顏色">
                                         <span contenteditable="true" onclick="event.stopPropagation()" onblur="updateTagText('${section}', ${index}, ${tIdx}, this.innerText)" data-placeholder="標籤">${tag.text}</span>
                                     </span>
                                 `).join('')}
                                 ${item.tags.length < 4 ? `
-                                    <button onclick="addTagToCard('${section}', ${index})" class="no-print text-slate-400 hover:text-[#1090d0] px-1.5 py-0.5 text-[9px] rounded border border-dashed border-slate-300 hover:border-[#1090d0] transition flex items-center gap-0.5" title="新增自訂標籤 (上限4個)">
-                                        <i class="fa-solid fa-plus text-[7.5px]"></i> 標籤 (${item.tags.length}/4)
+                                    <button onclick="addTagToCard('${section}', ${index})" class="no-print text-slate-400 hover:text-[#1090d0] px-1 py-0.2 text-[8px] rounded border border-dashed border-slate-300 hover:border-[#1090d0] transition flex items-center gap-0.5" title="新增自訂標籤 (上限4個)">
+                                        <i class="fa-solid fa-plus text-[6.5px]"></i> 標籤 (${item.tags.length}/4)
                                     </button>
                                 ` : ''}
                             </div>
 
-                            <!-- Row 5: Highlight Bullet Points (Enlarged to 10px) -->
-                            <ul class="space-y-0.5 text-[10px] text-slate-700 font-medium leading-snug">
+                            <!-- Row 5: Highlight Bullet Points (9px) -->
+                            <ul class="space-y-0.5 text-[9px] text-slate-700 font-medium leading-tight">
                                 ${item.bullets.map((b, bIdx) => `
                                     <li class="flex items-start gap-1">
-                                        <i class="fa-solid fa-star text-amber-500 mt-[2px] text-[7.5px] shrink-0"></i>
-                                        <div contenteditable="true" data-placeholder="點此輸入行程亮點特色內容..." class="text-slate-700 font-medium flex-1 outline-none break-words min-h-[14px]" onblur="updateBulletText('${section}', ${index}, ${bIdx}, this.innerText)">${b.text}</div>
+                                        <i class="fa-solid fa-star text-amber-500 mt-[2px] text-[6.5px] shrink-0"></i>
+                                        <div contenteditable="true" data-placeholder="點此輸入行程亮點特色內容..." class="text-slate-700 font-medium flex-1 outline-none break-words min-h-[12px]" onblur="updateBulletText('${section}', ${index}, ${bIdx}, this.innerText)">${b.text}</div>
                                     </li>
                                 `).join('')}
                             </ul>
                         </div>
 
-                        <!-- Card Bottom Strip: Recommendation & Category Badge (Enlarged to 9.5px / 9px) -->
-                        <div class="mt-0.5 pt-0.5 border-t border-slate-100 flex items-center justify-between text-[9.5px] text-slate-500">
+                        <!-- Card Bottom Strip: Recommendation & Category Badge -->
+                        <div class="mt-0.5 pt-0.5 border-t border-slate-100 flex items-center justify-between text-[8px] text-slate-500">
                             <div class="truncate flex items-center gap-1 flex-1 pr-1">
-                                <i class="fa-solid fa-quote-left text-slate-300 text-[7px]"></i>
+                                <i class="fa-solid fa-quote-left text-slate-300 text-[6px]"></i>
                                 <span class="truncate" contenteditable="true" data-placeholder="輸入一句推薦語..." onblur="updateCardData('${section}', ${index}, 'recommendation', this.innerText)">${item.recommendation}</span>
                             </div>
-                            <span class="bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded text-[8.5px] font-bold shrink-0" contenteditable="true" onblur="updateCardData('${section}', ${index}, 'categoryBadge', this.innerText)">
+                            <span class="bg-slate-100 text-slate-700 px-1 py-0.2 rounded text-[7.5px] font-bold shrink-0" contenteditable="true" onblur="updateCardData('${section}', ${index}, 'categoryBadge', this.innerText)">
                                 ${item.categoryBadge}
                             </span>
                         </div>
@@ -770,50 +669,113 @@
             renderAllSections();
         }
 
-        // Image Modal Management
+        // Image Modal & Cropper.js Management
         const imageModal = document.getElementById('image-modal');
-        const modalPreviewImg = document.getElementById('modal-preview-img');
+        const cropperTargetImg = document.getElementById('cropper-target-img');
         const imageUrlInput = document.getElementById('image-url-input');
         const localFileInput = document.getElementById('local-file-input');
+        let cropperInstance = null;
+
+        function initCropper(imageSrc) {
+            if (cropperInstance) {
+                cropperInstance.destroy();
+                cropperInstance = null;
+            }
+            cropperTargetImg.src = imageSrc;
+
+            cropperTargetImg.onload = function() {
+                cropperInstance = new Cropper(cropperTargetImg, {
+                    aspectRatio: 96 / 142, // Exactly matches the card poster ratio
+                    viewMode: 1,
+                    autoCropArea: 0.95,
+                    responsive: true,
+                    background: false,
+                    zoomable: true,
+                    scalable: true,
+                    rotatable: true
+                });
+            };
+        }
 
         function openImageModal(section, cIdx) {
             activeSection = section;
             activeCardIndex = cIdx;
             const arr = getSectionArray(section);
             const currentSrc = arr[cIdx].imgSrc;
-            modalPreviewImg.src = currentSrc;
+            
             imageUrlInput.value = currentSrc.startsWith('data:') ? '' : currentSrc;
             localFileInput.value = '';
             imageModal.classList.remove('hidden');
+
+            initCropper(currentSrc);
         }
 
         function closeImageModal() {
+            if (cropperInstance) {
+                cropperInstance.destroy();
+                cropperInstance = null;
+            }
             imageModal.classList.add('hidden');
         }
 
-        imageUrlInput.addEventListener('input', (e) => {
-            if (e.target.value.trim()) {
-                modalPreviewImg.src = e.target.value.trim();
+        function loadImageFromUrl() {
+            const url = imageUrlInput.value.trim();
+            if (url) {
+                initCropper(url);
             }
-        });
+        }
 
         localFileInput.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(event) {
-                    modalPreviewImg.src = event.target.result;
                     imageUrlInput.value = '';
+                    initCropper(event.target.result);
                 };
                 reader.readAsDataURL(file);
             }
         });
 
+        function setCropRatio(ratio) {
+            if (cropperInstance) {
+                cropperInstance.setAspectRatio(ratio);
+            }
+        }
+
+        function rotateCropper(deg) {
+            if (cropperInstance) {
+                cropperInstance.rotate(deg);
+            }
+        }
+
+        function zoomCropper(delta) {
+            if (cropperInstance) {
+                cropperInstance.zoom(delta);
+            }
+        }
+
         function saveImageChange() {
-            const arr = getSectionArray(activeSection);
-            if (modalPreviewImg.src && arr[activeCardIndex]) {
-                arr[activeCardIndex].imgSrc = modalPreviewImg.src;
-                renderAllSections();
+            if (!cropperInstance) {
+                closeImageModal();
+                return;
+            }
+            
+            // Get cropped high-resolution canvas
+            const croppedCanvas = cropperInstance.getCroppedCanvas({
+                width: 300,
+                height: 444,
+                imageSmoothingEnabled: true,
+                imageSmoothingQuality: 'high'
+            });
+
+            if (croppedCanvas) {
+                const croppedDataUrl = croppedCanvas.toDataURL('image/jpeg', 0.92);
+                const arr = getSectionArray(activeSection);
+                if (arr[activeCardIndex]) {
+                    arr[activeCardIndex].imgSrc = croppedDataUrl;
+                    renderAllSections();
+                }
             }
             closeImageModal();
         }
